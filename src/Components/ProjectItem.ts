@@ -1,53 +1,55 @@
-namespace App {
-  export class ProjectItem
-    extends Component<HTMLUListElement, HTMLLIElement>
-    implements Draggable
-  {
-    private project: Project;
+import { Component } from "./BaseFile.js";
+import { Draggable } from "../Interfaces/DragInterfaces.js";
+import { Project } from "../Models/Model.js";
 
-    get persons() {
-      return this.project.people === 1
-        ? "1 Person"
-        : `${this.project.people} People`;
-    }
+export class ProjectItem
+  extends Component<HTMLUListElement, HTMLLIElement>
+  implements Draggable
+{
+  private project: Project;
 
-    constructor(hostId: string, project: Project) {
-      super("single-project", hostId, false, project.id);
-      this.project = project;
+  get persons() {
+    return this.project.people === 1
+      ? "1 Person"
+      : `${this.project.people} People`;
+  }
 
-      this.configure();
-      this.render();
-    }
+  constructor(hostId: string, project: Project) {
+    super("single-project", hostId, false, project.id);
+    this.project = project;
 
-    dragStartHandler(e: DragEvent) {
-      const { dataTransfer } = e;
+    this.configure();
+    this.render();
+  }
 
-      dataTransfer!.setData("text/plain", this.project.id);
-      dataTransfer!.effectAllowed = "move";
-    }
+  dragStartHandler(e: DragEvent) {
+    const { dataTransfer } = e;
 
-    dragEndHandler(_e: DragEvent) {
-      // console.log("END");
-      const listEl = document.querySelector("ul")!;
-      listEl.classList.remove("droppable");
-    }
+    dataTransfer!.setData("text/plain", this.project.id);
+    dataTransfer!.effectAllowed = "move";
+  }
 
-    configure() {
-      this.renderEl.addEventListener(
-        "dragstart",
-        this.dragStartHandler.bind(this)
-      );
+  dragEndHandler(_e: DragEvent) {
+    // console.log("END");
+    const listEl = document.querySelector("ul")!;
+    listEl.classList.remove("droppable");
+  }
 
-      this.renderEl.addEventListener("dragend", this.dragEndHandler.bind(this));
-    }
+  configure() {
+    this.renderEl.addEventListener(
+      "dragstart",
+      this.dragStartHandler.bind(this)
+    );
 
-    render() {
-      const { title, description } = this.project;
+    this.renderEl.addEventListener("dragend", this.dragEndHandler.bind(this));
+  }
 
-      this.renderEl.querySelector("h2")!.textContent = title;
-      this.renderEl.querySelector("h3")!.textContent =
-        this.persons + " Assigned.";
-      this.renderEl.querySelector("p")!.textContent = description;
-    }
+  render() {
+    const { title, description } = this.project;
+
+    this.renderEl.querySelector("h2")!.textContent = title;
+    this.renderEl.querySelector("h3")!.textContent =
+      this.persons + " Assigned.";
+    this.renderEl.querySelector("p")!.textContent = description;
   }
 }
