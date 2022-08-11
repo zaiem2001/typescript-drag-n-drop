@@ -1,6 +1,6 @@
-import { Component } from "./BaseFile.js";
-import { Draggable } from "../Interfaces/DragInterfaces.js";
-import { Project } from "../Models/Model.js";
+import { Component } from "./BaseFile";
+import { Draggable } from "../Interfaces/DragInterfaces";
+import { Project } from "../Models/Model";
 
 export class ProjectItem
   extends Component<HTMLUListElement, HTMLLIElement>

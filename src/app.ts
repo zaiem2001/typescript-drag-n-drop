@@ -1,7 +1,9 @@
-import { ProjectList } from "./Components/ProjectList.js";
-import { ProjectManager } from "./Components/ProjectManager.js";
-import { ProjectStatus } from "./Models/Model.js";
+import { ProjectList } from "./Components/ProjectList";
+import { ProjectManager } from "./Components/ProjectManager";
+import { ProjectStatus } from "./Models/Model";
 
 new ProjectManager();
 new ProjectList(ProjectStatus.ACTIVE);
 new ProjectList(ProjectStatus.COMPLETED);
+
+console.log("Zaiem")

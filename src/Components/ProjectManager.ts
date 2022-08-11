@@ -1,6 +1,6 @@
-import { ProjectStatus } from "../Models/Model.js";
-import { projectState } from "../ProjectState.js";
-import { Component } from "./BaseFile.js";
+import { ProjectStatus } from "../Models/Model";
+import { projectState } from "../ProjectState";
+import { Component } from "./BaseFile";
 
 export class ProjectManager extends Component<HTMLDivElement, HTMLFormElement> {
   titleInpEl: HTMLInputElement;
